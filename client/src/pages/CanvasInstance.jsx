@@ -122,9 +122,21 @@ export default function CanvasInstance() {
     const width = Math.abs(endX - startX);
     const height = Math.abs(endY - startY);
 
+    // helper: decide if fill should be applied
+    const shouldFill =
+      style.fill &&
+      style.fill.toLowerCase() !== '#ffffff' &&
+      style.fill.toLowerCase() !== 'white';
+
     // shapes
     if (type === 'square' || type === 'rect') {
-      ctx.strokeRect(x, y, width, height);
+      ctx.beginPath();
+      ctx.rect(x, y, width, height);
+      if (shouldFill) {
+        ctx.fillStyle = style.fill;
+        ctx.fill();
+      }
+      ctx.stroke();
     } else if (type === 'diamond') {
       const cx = x + width / 2;
       const cy = y + height / 2;
@@ -133,12 +145,20 @@ export default function CanvasInstance() {
       ctx.lineTo(x + width, cy);
       ctx.lineTo(cx, y + height);
       ctx.lineTo(x, cy);
+      if (shouldFill) {
+        ctx.fillStyle = style.fill;
+        ctx.fill();
+      }
       ctx.closePath();
       ctx.stroke();
     } else if (type === 'circle') {
       const radius = Math.min(width, height) / 2;
       ctx.beginPath();
       ctx.arc(x + width / 2, y + height / 2, radius, 0, Math.PI * 2);
+      if (shouldFill) {
+        ctx.fillStyle = style.fill;
+        ctx.fill();
+      }
       ctx.stroke();
     } else if (type === 'line') {
       ctx.beginPath();
@@ -146,12 +166,10 @@ export default function CanvasInstance() {
       ctx.lineTo(endX, endY);
       ctx.stroke();
     } else if (type === 'arrow') {
-      // draw main line
       ctx.beginPath();
       ctx.moveTo(startX, startY);
       ctx.lineTo(endX, endY);
       ctx.stroke();
-      // arrowhead
       drawArrowHead(ctx, startX, startY, endX, endY, style.stroke_width ?? 2);
     } else if (type === 'draw') {
       if (!points || points.length === 0) return;
@@ -162,7 +180,6 @@ export default function CanvasInstance() {
       }
       ctx.stroke();
     } else if (type === 'text') {
-      // basic text rendering (expand as needed)
       ctx.save();
       ctx.fillStyle = style.outline ?? '#000';
       ctx.font = `${style.font_size ?? 16}px sans-serif`;

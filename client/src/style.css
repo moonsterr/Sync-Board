@@ -1,3 +1,5 @@
+@import url('https://fonts.googleapis.com/css2?family=Patrick+Hand&display=swap');
+
 * {
   margin: 0;
   padding: 0;
@@ -6,9 +8,190 @@
 
 body {
   font-family: Arial, Helvetica, sans-serif;
+  /* background: linear-gradient(to bottom, #f8fef8, #fff); */
 }
 :root {
   --subtle-shadow: rgba(0, 0, 0, 0.1);
+}
+
+.landing-page {
+  background: linear-gradient(to bottom, #f8fef8, #fff);
+}
+.header {
+  font-family: 'Patrick Hand', cursive;
+  font-weight: 400;
+  font-style: normal;
+  height: 100px;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  position: fixed;
+  top: 0;
+  left: 0;
+  right: 0;
+  z-index: 100;
+  padding: 0 50px;
+}
+.icon {
+  color: #6965db;
+  font-size: 2rem;
+}
+.header-logo {
+  font-size: 2.4rem;
+}
+.header-logo-name {
+  color: #030064;
+  font-size: 2.4rem;
+  margin-bottom: 10px;
+}
+.special-class {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 10px;
+}
+.scrolled {
+  background-color: rgba(255, 255, 255, 0.5); /* semi-transparent */
+  backdrop-filter: blur(10px); /* blur background behind header */
+  -webkit-backdrop-filter: blur(10px); /* Safari support */
+  border-bottom: 1px solid rgba(211, 205, 205, 0.5);
+}
+.nav {
+  gap: 20px;
+  button {
+    padding: 12px 30px;
+    color: #030064;
+    border-radius: 20px;
+    border: 1px solid rgba(0, 0, 0, 0.2);
+    background-color: white;
+    font-size: 1.1rem;
+    &:hover {
+      background-color: rgba(0, 0, 0, 0.05); /* semi-transparent */
+      color: #030064;
+    }
+  }
+  .canvas-button {
+    background-color: #6965db;
+    color: white;
+    border: none;
+    padding: 12px 50px;
+  }
+}
+.nav-hamburger {
+  display: none;
+}
+.registration-page {
+  display: flex;
+  width: 100vw;
+  background-color: #6965db;
+  max-height: 100vh;
+}
+.account {
+  min-width: 400px;
+  /* max-width: 0%; */
+  height: 80vh;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  background-color: rgb(245, 245, 245, 0.3);
+  padding: 50px;
+  border-radius: 20px;
+  width: 50vw;
+}
+.account-details {
+  display: flex;
+  flex-direction: column;
+  gap: 20px;
+}
+.registration-form {
+  display: flex;
+  flex-direction: column;
+  margin-top: 50px;
+  gap: 40px;
+}
+
+.form-field {
+  border-bottom: 1px solid black;
+  display: flex;
+  gap: 50px;
+  color: grey;
+}
+.form-field-icon {
+  width: 30px;
+  height: 30px;
+  min-width: 30px;
+  min-height: 30px;
+  margin-bottom: 5px;
+}
+
+.form-field input {
+  border: none;
+  background-color: rgb(245, 245, 245, 0);
+  &:focus {
+    outline: none;
+    border: none;
+    box-shadow: none;
+  }
+  &::placeholder {
+    font-size: 1.1rem;
+  }
+}
+.icon {
+  width: 100%;
+  height: 100%;
+}
+
+.registration-button {
+  height: 50px;
+  border: none;
+  border-radius: 10px;
+  background-color: dodgerblue;
+  color: white;
+  font-size: 1.2rem;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  gap: 5px;
+  &:hover {
+    box-shadow: 0 2px 6px rgba(0, 0, 0, 0.3);
+  }
+}
+
+.google {
+  background-color: white;
+  color: blue;
+  border: 1px solid #8692b7;
+}
+
+a {
+  text-decoration: none;
+}
+.account-details {
+  h4 {
+    font-weight: 500;
+    margin: 20px auto;
+  }
+}
+.banner-card-component {
+  position: absolute;
+  top: 20px;
+  left: 50%;
+  transform: translateX(-50%);
+}
+
+.registration-page-overlay {
+  width: 50vw;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  height: 100vh;
+}
+.registration-page-register {
+  justify-content: center;
+  align-items: center;
+  display: flex;
+  background-color: white;
 }
 
 .drawing-options {
@@ -236,12 +419,6 @@ input[type='range']::-webkit-slider-thumb {
 .draw-customizations .option-active svg {
   color: #030064;
 }
-@media (max-width: 500px) {
-  .txt {
-    display: none;
-  }
-}
-
 canvas {
   border: none;
   width: 100vw;
@@ -249,4 +426,45 @@ canvas {
   z-index: -1;
   position: absolute;
   cursor: crosshair;
+}
+
+@media (max-width: 500px) {
+  .txt {
+    display: none;
+  }
+}
+@media (max-width: 450px) {
+  .account {
+    min-width: 340px;
+  }
+}
+
+@media (max-width: 700px) {
+  .nav {
+    display: none;
+  }
+  .nav-hamburger {
+    display: block;
+  }
+}
+@media (max-width: 850px) {
+  .registration-page-overlay {
+    display: none;
+  }
+  .registration-page-register {
+    width: 100vw;
+    background-color: #4a47b1;
+    height: 100vh;
+    .account {
+      background-color: white;
+    }
+  }
+}
+
+@media (max-width: 1150px) {
+  .registration-page-overlay {
+    img {
+      max-width: 400px;
+    }
+  }
 }
